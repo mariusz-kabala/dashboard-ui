@@ -55,10 +55,10 @@ pipeline {
                     configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
                         sh "mkdir ~/.aws"
                         sh "mv aws-config ~/.aws/config"
-                        sh "aws s3 cp storybook-static s3://dashboard-ui/master/ --recursive --acl public-read"
+                        sh "aws s3 cp storybook-static s3://dashboardui/master/ --recursive --acl public-read"
                     }
 
-                    echo "https://dashboard-ui.s3.nl-ams.scw.cloud/master/index.html"
+                    echo "https://dashboardui.s3.nl-ams.scw.cloud/master/index.html"
                 }
             }
         }
