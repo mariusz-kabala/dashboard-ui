@@ -1,0 +1,54 @@
+.container {
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    position: relative;
+
+    &:not(:first-child) {
+        margin-top: 40px;
+    }
+
+    * {
+        margin-bottom: 0;
+      }
+    
+      h5 {
+        font-size: 13px;
+        font-weight: 700;
+      }
+}
+
+.healthChart {
+    position: relative;
+}
+
+.info {
+    position: absolute;
+    width: 100%;
+    top: calc(50% - 55px);
+    animation: label 1.5s ease-in;
+
+    p {
+      margin: 0;
+    }
+}
+
+.number {
+    font-size: 56px;
+    line-height: 60px;
+}
+
+.units {
+    color:#999999;
+    margin-top: 5px;
+}
+
+.goal {
+    margin-top: 20px;
+    font-size: 12px;
+    color:#999999;
+}
