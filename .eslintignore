@@ -4,5 +4,9 @@ dist
 node_modules
 .next
 .fakeAPI
+<<<<<<< Updated upstream
 next.config.js
 .storybook
+=======
+next.config.js
+>>>>>>> Stashed changes
