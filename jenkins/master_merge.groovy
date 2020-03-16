@@ -47,6 +47,26 @@ pipeline {
             }
         }
 
+        stage ('Run unit tests') {
+            steps {
+                script {
+                    sh "yarn test --coverage"
+                }
+            }
+
+            post {
+                always {
+                    configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
+                        sh "mkdir ~/.aws"
+                        sh "mv aws-config ~/.aws/config"
+                        sh "aws s3 cp coverage s3://unittest/dashboardui/master/ --recursive --acl public-read"
+                    }
+
+                    echo "https://unittest.s3.nl-ams.scw.cloud/dashboardui/master/index.html"
+                }
+            }
+        }
+
         stage ('Build storybook') {
             steps {
                 script {
