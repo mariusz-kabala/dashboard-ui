@@ -1,8 +1,4 @@
 /*.js
 dist
-*.d.ts
 node_modules
-.next
-.fakeAPI
-next.config.js
 .storybook
