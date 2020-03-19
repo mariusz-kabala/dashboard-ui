@@ -27,7 +27,14 @@ export default {
       },
     },
   ],
-  external: ['react', 'react-dom', 'classnames', 'reactstrap', 'recharts'],
+  external: [
+    'react',
+    'react-dom',
+    'react-router-dom',
+    'classnames',
+    'reactstrap',
+    'recharts',
+  ],
   plugins: [
     typescript(),
     resolve({

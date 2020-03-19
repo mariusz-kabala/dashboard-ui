@@ -1,0 +1,149 @@
+.wrap {
+  &.wrapOpen {
+    .categoryIcon {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.categoryIcon {
+  position: absolute;
+  right: 15px;
+  font-size: 10px;
+  line-height: 14px;
+  opacity: 1;
+  transition: opacity 0.5s 0.2s, transform 0.3s;
+  color: #787985;
+}
+
+.link {
+  height: 36px;
+  width: 240px;
+  transition: all 0.3s;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  padding: 11px 20px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+
+  color: #646777;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #4ce1b6;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
+  p {
+    position: absolute;
+    left: 43px;
+    width: 160px;
+    transition: left 0.3s;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: #fafbfe;
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 13px;
+  line-height: 13px;
+  color: #b1c3c8;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 16px;
+  position: relative;
+  display: flex;
+}
+
+.isNew {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  top: -3px;
+  display: block;
+  margin-left: 5px;
+  background: #ff4861;
+}
+
+@media screen and (min-width: 576px) {
+  .submenuWrap {
+    position: absolute;
+    left: 55px;
+    width: 0;
+    transition: 0.3s;
+    overflow: hidden;
+
+    .link {
+      width: 185px;
+      padding-left: 15px;
+
+      p {
+        position: relative;
+        left: 0;
+        animation: none;
+      }
+    }
+
+    .submenuWrap {
+      position: relative;
+      left: 0;
+
+      .link {
+        padding-left: 30px;
+      }
+    }
+  }
+}
+
+.submenu {
+  transition: height 0.5s 0s, padding 0.5s 0s, opacity 0.4s 0.1s;
+  padding: 15px 0;
+
+  &.submenu {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+
+    .link {
+      padding-left: 53px;
+
+      p {
+        left: 53px;
+      }
+    }
+  }
+
+  background-color: #fafbfe;
+
+  .link {
+    padding-left: 43px;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
+  .link {
+    display: block;
+  }
+}
