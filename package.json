@@ -5,9 +5,13 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:coverage": "yarn test --coverage --changedSince=origin/master",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook",
+    "eslint": "eslint \"**/*.ts\" \"**/*.tsx\"",
+    "check:ts": "tsc --noEmit -p tsconfig.json",
+    "preversion": "yarn check:ts && yarn eslint && yarn test:coverage"
   },
   "repository": {
     "type": "git",
@@ -27,7 +31,8 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run preversion"
     }
   },
   "lint-staged": {
@@ -74,6 +79,7 @@
     "jest": "^25.1.0",
     "lint-staged": "^10.0.8",
     "mdi-react": "^7.0.0",
+    "mutationobserver-shim": "^0.3.3",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
