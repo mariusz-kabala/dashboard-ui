@@ -67,6 +67,14 @@ pipeline {
             }
         }
 
+        stage ('Build packages') {
+            steps {
+                script {
+                    sh "yarn workspaces run prepare"
+                }
+            }
+        }
+
         stage ('Build storybook') {
             steps {
                 script {
