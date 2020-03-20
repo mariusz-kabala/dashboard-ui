@@ -1,5 +1,5 @@
 {
-  "name": "@dashboard-ui/progress-circle",
+  "name": "@dashboard-ui/topbar-menu-link",
   "version": "0.0.1",
   "source": "src/index.tsx",
   "module": "dist/index.esm.js",
@@ -15,12 +15,16 @@
   "dependencies": {
     "classnames": "^2.2.6"
   },
+  "devDependencies": {
+    "react-router-dom": "^5.1.2",
+    "@types/react-router-dom": "^5.1.3"
+  },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "reactstrap": "^8.4.1",
-    "recharts": "^1.8.5",
     "bootstrap": "^4.4.1",
+    "react-router-dom": "^5.1.2",
     "@dashboard-ui/styles": "0.0.1"
   }
 }

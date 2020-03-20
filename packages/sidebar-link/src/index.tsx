@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Badge } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
-import styles from './styles.scss'
 
 export const SideBarLink: FC<{
   title: string
@@ -16,13 +15,13 @@ export const SideBarLink: FC<{
   route = '/',
   onClick = () => null,
 }) => (
-  <NavLink to={route} onClick={onClick} activeClassName={styles.active}>
-    <li className={styles.link}>
-      {icon ? <span className={`${styles.icon} lnr lnr-${icon}`} /> : ''}
-      <p className={styles.title}>
+  <NavLink to={route} onClick={onClick} activeClassName="sidebar__link-active">
+    <li className="sidebar__link">
+      {icon ? <span className={`sidebar__link-icon lnr lnr-${icon}`} /> : ''}
+      <p className="sidebar__link-title">
         {title}
         {newLink ? (
-          <Badge className={styles.badge}>
+          <Badge className="sidebar__link-badge">
             <span>New</span>
           </Badge>
         ) : (

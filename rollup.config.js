@@ -34,6 +34,7 @@ export default {
     'classnames',
     'reactstrap',
     'recharts',
+    'react-smooth-scrollbar',
   ],
   plugins: [
     typescript(),
