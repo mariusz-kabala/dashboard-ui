@@ -39,6 +39,23 @@ pipeline {
                 }
             }
         }
+
+        stage ('Checkout') {
+            steps {
+                    checkout([
+                            $class                           : 'GitSCM',
+                            branches                         : [[name: "${branch}"]],
+                            browser                          : [$class: 'GithubWeb', repoUrl: "https://github.com/mariusz-kabala/dashboard-ui"],
+                            doGenerateSubmoduleConfigurations: false,
+                            userRemoteConfigs                : [[
+                                credentialsId: 'github',
+                                refspec      : '+refs/pull/*:refs/remotes/origin/pr/*',
+                                url          : "git@github.com:mariusz-kabala/dashboard-ui.git"
+                            ]]
+                    ])
+            }
+        }
+        
         stage ('Install dependencies') {
             steps {
                 script {
