@@ -65,7 +65,6 @@ pipeline {
             steps {
                 script {
                     configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
-                        sh "cat .npmrc"
                         sh "yarn"
                         
                         try {

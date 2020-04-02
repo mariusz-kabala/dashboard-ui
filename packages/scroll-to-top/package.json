@@ -12,11 +12,9 @@
     "build-declarations": "tsc --declaration --emitDeclarationOnly --outFile ./dist/index.d.ts && node ../../scripts/fixTsDeclarations.js",
     "prepare": "yarn build && yarn build-declarations"
   },
-  "dependencies": {
-    "@dashboard-ui/hooks": "0.0.1"
-  },
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "@dashboard-ui/hooks": "0.0.1"
   }
 }
