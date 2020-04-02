@@ -64,16 +64,19 @@ pipeline {
         stage ('Install dependencies') {
             steps {
                 script {
-                    sh "yarn"
-                    
-                    try {
-                        hasNewLock = sh (
-                            script: 'git status | grep -c yarn.lock',
-                            returnStdout: true,
-                            returnStatus: false
-                        ).trim()
-                    } catch (Exception e) {
-                        // ignore
+                    configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
+                        sh "cat .npmrc"
+                        sh "yarn"
+                        
+                        try {
+                            hasNewLock = sh (
+                                script: 'git status | grep -c yarn.lock',
+                                returnStdout: true,
+                                returnStatus: false
+                            ).trim()
+                        } catch (Exception e) {
+                            // ignore
+                        }
                     }
                 }
             }
