@@ -61,6 +61,15 @@ pipeline {
                 script {
                     sh "yarn"
                     sh "ls -la"
+                    sh "git status"
+                }
+            }
+        }
+
+        stage ('Build packages') {
+            steps {
+                script {
+                    sh "yarn workspaces run prepare"
                 }
             }
         }
@@ -81,14 +90,6 @@ pipeline {
                     }
 
                     echo "https://unittest.s3.nl-ams.scw.cloud/dashboardui/master/index.html"
-                }
-            }
-        }
-
-        stage ('Build packages') {
-            steps {
-                script {
-                    sh "yarn workspaces run prepare"
                 }
             }
         }
