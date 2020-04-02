@@ -27,6 +27,9 @@ pipeline {
                         println "GIT BRANCH not detected"
                     }
 
+                    sh 'git config user.name "jenkins-kabala.tech"'
+                    sh 'git config user.email "jenkins@kabala.tech"'
+
                     if (!branch) {
                         error "GIT branch to process not found"
                     }
