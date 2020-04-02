@@ -60,6 +60,7 @@ pipeline {
             steps {
                 script {
                     sh "yarn"
+                    sh "ls -la"
                 }
             }
         }
