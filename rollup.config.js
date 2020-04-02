@@ -35,6 +35,7 @@ export default {
     'reactstrap',
     'recharts',
     'react-smooth-scrollbar',
+    '@dashboard-ui/hooks',
   ],
   plugins: [
     typescript(),
