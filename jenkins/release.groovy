@@ -8,7 +8,6 @@ pipeline {
         GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no"
         GH_TOKEN = credentials('jenkins-github-accesstoken')
         DOCKER_BUILDKIT = 1
-        GH_TOKEN = credentials('jenkins-github-accesstoken')
     }
 
     stages {
