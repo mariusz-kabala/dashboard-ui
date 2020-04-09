@@ -14,9 +14,10 @@ RUN yarn test --coverage --config ./jest.noThreshold.js
 # upload unit tests results
 FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS testCoverageUpload
 
-COPY --from=test /app/coverage /app/coverage
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
 
-COPY --from=test /app/aws-config /root/.aws/config
+COPY --from=test /app/coverage /app/coverage
 
 RUN cat /root/.aws/config
 
@@ -38,9 +39,10 @@ RUN yarn build-storybook
 # upload unit tests results
 FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS storyBookUpload
 
-COPY --from=test /app/storybook-static /app/storybook-static
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
 
-COPY --from=test /app/aws-config ~/.aws/config
+COPY --from=test /app/storybook-static /app/storybook-static
 
 WORKDIR /app
 

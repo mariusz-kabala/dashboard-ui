@@ -117,7 +117,7 @@ pipeline {
         stage ('Upload unit tests results') {
             steps {
                 script {
-                    sh "docker build --target=testCoverageUpload ."
+                    sh "docker build --build-arg AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID} --build-arg AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY} --target=testCoverageUpload ."
                 }
             }
         }
@@ -133,7 +133,7 @@ pipeline {
         stage ('Upload storybook') {
             steps {
                 script {
-                    sh "docker build --target=storyBookUpload ."
+                    sh "docker build --build-arg AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID} --build-arg AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY} --target=storyBookUpload ."
                 }
             }
         }
