@@ -16,10 +16,16 @@ COPY --from=test /app/coverage /app/coverage
 
 COPY --from=test /app/aws-config ~/.aws/config
 
+WORKDIR /app
+
 RUN aws s3 cp --recursive --acl public-read coverage s3://unittest/dashboardui/master/
 
 # build packages and storybook
 FROM node:12-alpine AS build
+
+COPY --from=test /app /app
+
+WORKDIR /app
 
 RUN yarn workspaces run prepare
 
@@ -31,5 +37,7 @@ FROM mesosphere/aws-cli AS storyBookUpload
 COPY --from=test /app/storybook-static /app/storybook-static
 
 COPY --from=test /app/aws-config ~/.aws/config
+
+WORKDIR /app
 
 RUN aws s3 cp --recursive --acl public-read storybook-static s3://unittest/dashboardui/master/
