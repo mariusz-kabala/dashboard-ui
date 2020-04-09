@@ -12,13 +12,9 @@ RUN yarn
 RUN yarn test --coverage --config ./jest.noThreshold.js
 
 # upload unit tests results
-FROM mesosphere/aws-cli AS testCoverageUpload
+FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS testCoverageUpload
 
 COPY --from=test /app/coverage /app/coverage
-
-COPY --from=test /app/aws-config /root/.aws/config
-
-RUN cat /root/.aws/config
 
 WORKDIR /app
 
@@ -36,11 +32,9 @@ RUN yarn workspaces run prepare
 RUN yarn build-storybook
 
 # upload unit tests results
-FROM mesosphere/aws-cli AS storyBookUpload
+FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS storyBookUpload
 
 COPY --from=test /app/storybook-static /app/storybook-static
-
-COPY --from=test /app/aws-config ~/.aws/config
 
 WORKDIR /app
 
