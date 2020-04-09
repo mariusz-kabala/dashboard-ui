@@ -2,6 +2,8 @@
 
 FROM docker-registry.kabala.tech/node12-with-git:latest
 
+ARG GH_TOKEN
+
 WORKDIR /app
 
 COPY . .
