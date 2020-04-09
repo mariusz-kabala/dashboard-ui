@@ -1,12 +1,13 @@
 def branch = '';
 
 pipeline {
-    agent { docker { image 'docker-registry.kabala.tech/node12-with-git:latest' } }
+    agent any
     
     environment {
         CI = 'true'
         GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no"
         GH_TOKEN = credentials('jenkins-github-accesstoken')
+        DOCKER_BUILDKIT = 1
     }
 
     stages {
@@ -62,7 +63,7 @@ pipeline {
                 sshagent(['jenkins-ssh-key']) {
                     configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
                         script {
-                            sh "docker build -f Dockerfile.release --force-rm --no-cache ."
+                            sh "docker build --ssh default -f Dockerfile.release --force-rm --no-cache ."
                         }
                     }
                 }

@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:experimental
+
 FROM docker-registry.kabala.tech/node12-with-git:latest
 
 WORKDIR /app
@@ -12,4 +14,6 @@ RUN git checkout master
 
 RUN git status
 
-RUN lerna publish
+RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+RUN --mount=type=ssh lerna publish

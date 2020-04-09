@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/mariusz-kabala/dashboard-ui.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.kabala.tech/"
+  },
   "author": "Mariusz Kabala",
   "license": "ISC",
   "bugs": {
