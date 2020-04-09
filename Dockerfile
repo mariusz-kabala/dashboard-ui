@@ -16,9 +16,9 @@ FROM mesosphere/aws-cli AS testCoverageUpload
 
 COPY --from=test /app/coverage /app/coverage
 
-COPY --from=test /app/aws-config ~/.aws/config
+COPY --from=test /app/aws-config /root/.aws/config
 
-RUN cat ~/.aws/config
+RUN cat /root/.aws/config
 
 WORKDIR /app
 
