@@ -1,0 +1,11 @@
+FROM docker-registry.kabala.tech/node12-with-git:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN yarn
+
+RUN yarn workspaces run prepare
+
+RUN lerna publish

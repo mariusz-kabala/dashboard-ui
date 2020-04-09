@@ -57,32 +57,11 @@ pipeline {
             }
         }
 
-        stage ('Install dependencies') {
+        stage ('Build and release') {
             steps {
-                script {
-                    sh "npm i -g lerna"
-                    sh "node -v"
-                    sh "yarn -v"
-                    sh "lerna -v"
-                    sh "yarn"
-                }
-            }
-        }
-
-        stage ('Build packages') {
-            steps {
-                script {
-                    sh "yarn workspaces run prepare"
-                }
-            }
-        }
-
-        stage ('Release packages') {
-            steps {
-                script {
-                    sshagent(['jenkins-ssh-key']) {
-                        sh "git checkout master"
-                        sh "lerna publish --no-commit-hooks"
+                configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
+                    script {
+                        sh "docker build -f Dockerfile.release --force-rm --no-cache ."
                     }
                 }
             }
