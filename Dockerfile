@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN ls -la
+
 RUN yarn
 
 RUN yarn test --coverage --config ./jest.noThreshold.js
