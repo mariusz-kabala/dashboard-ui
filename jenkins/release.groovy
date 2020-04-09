@@ -59,9 +59,11 @@ pipeline {
 
         stage ('Build and release') {
             steps {
-                configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
-                    script {
-                        sh "docker build -f Dockerfile.release --force-rm --no-cache ."
+                sshagent(['jenkins-ssh-key']) {
+                    configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
+                        script {
+                            sh "docker build -f Dockerfile.release --force-rm --no-cache ."
+                        }
                     }
                 }
             }
