@@ -8,4 +8,8 @@ RUN yarn
 
 RUN yarn workspaces run prepare
 
+RUN git checkout master
+
+RUN git status
+
 RUN lerna publish
