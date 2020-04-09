@@ -8,6 +8,7 @@ pipeline {
         GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no"
         GH_TOKEN = credentials('jenkins-github-accesstoken')
         DOCKER_BUILDKIT = 1
+        GH_TOKEN = credentials('jenkins-github-accesstoken')
     }
 
     stages {
@@ -63,7 +64,7 @@ pipeline {
                 sshagent(['jenkins-ssh-key']) {
                     configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
                         script {
-                            sh "docker build --ssh default -f Dockerfile.release --force-rm --no-cache ."
+                            sh "docker build --build-arg GH_TOKEN=${env.GH_TOKEN} --ssh default -f Dockerfile.release --force-rm --no-cache ."
                         }
                     }
                 }
