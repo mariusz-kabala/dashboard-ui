@@ -40,11 +40,7 @@ export default {
   plugins: [
     svgr(),
     builtins(),
-    typescript({
-      tsconfig: `${process.cwd()}/tsconfig.json`,
-      verbosity: 3,
-      clean: true,
-    }),
+    typescript(),
     commonjs(),
     resolve({
       preferBuiltins: false,

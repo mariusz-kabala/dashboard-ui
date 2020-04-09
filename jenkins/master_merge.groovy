@@ -2,7 +2,7 @@ def branch = '';
 def hasNewLock = '0';
 
 pipeline {
-    agent { docker { image 'docker-registry.kabala.tech/node12-with-git:latest' } }
+    agent any
 
     environment {
         GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no"
@@ -107,10 +107,36 @@ pipeline {
         //     }
         // }
 
-        stage ('Build packages') {
+        stage ('Build packages and run unit tests') {
             steps {
                 script {
-                    sh "docker build --force-rm --no-cache --target=build ."
+                    configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
+                        sh "docker build --force-rm --no-cache --target=test ."
+                    }
+                }
+            }
+        }
+
+        stage ('Upload unit tests results') {
+            steps {
+                script {
+                    sh "docker build --target=testCoverageUpload ."
+                }
+            }
+        }
+
+        stage ('Build packages and storybook') {
+            steps {
+                script {
+                    sh "docker build --target=build ."
+                }
+            }
+        }
+
+        stage ('Upload storybook') {
+            steps {
+                script {
+                    sh "docker build --target=storyBookUpload ."
                 }
             }
         }
