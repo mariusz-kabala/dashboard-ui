@@ -5,10 +5,10 @@ import { usePrevious } from '@dashboard-ui/hooks'
 const ScrollToTopInner: FC<RouteComponentProps & {
   children: ReactNode
 }> = ({ children, location }) => {
-  const prev = usePrevious({ location })
+  const prev: any = usePrevious({ location })
 
   useEffect(() => {
-    if (prev && location.pathname !== prev.location.pathname) {
+    if (prev && location.pathname !== prev.location?.pathname) {
       window.scrollTo(0, 0)
     }
   })
