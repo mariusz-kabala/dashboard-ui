@@ -1,6 +1,6 @@
 {
   "name": "@dashboard-ui/sidebar-link",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "source": "src/index.tsx",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",
