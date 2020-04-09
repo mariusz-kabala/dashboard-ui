@@ -11,6 +11,8 @@ RUN yarn test --coverage --config ./jest.noThreshold.js
 
 RUN yarn workspaces run prepare
 
+RUN yarn build:storybook
+
 # upload unit tests results
 FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS upload
 
