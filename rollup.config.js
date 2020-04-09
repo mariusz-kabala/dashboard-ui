@@ -38,13 +38,13 @@ export default {
     '@dashboard-ui/hooks',
   ],
   plugins: [
+    svgr(),
+    builtins(),
     typescript(),
+    commonjs(),
     resolve({
       preferBuiltins: false,
     }),
-    svgr(),
-    builtins(),
-    commonjs(),
     postcss({
       extract: false,
       modules: true,
