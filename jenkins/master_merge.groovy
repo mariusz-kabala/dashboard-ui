@@ -64,91 +64,91 @@ pipeline {
             }
         }
         
-        stage ('Install dependencies') {
-            steps {
-                script {
-                    configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
-                        sh "yarn"
+        // stage ('Install dependencies') {
+        //     steps {
+        //         script {
+        //             configFileProvider([configFile(fileId: 'jenkins-npm', targetLocation: '.npmrc')]) {
+        //                 sh "yarn"
                         
-                        try {
-                            hasNewLock = sh (
-                                script: 'git status | grep -c yarn.lock',
-                                returnStdout: true,
-                                returnStatus: false
-                            ).trim()
-                        } catch (Exception e) {
-                            // ignore
-                        }
-                    }
-                }
-            }
-        }
+        //                 try {
+        //                     hasNewLock = sh (
+        //                         script: 'git status | grep -c yarn.lock',
+        //                         returnStdout: true,
+        //                         returnStatus: false
+        //                     ).trim()
+        //                 } catch (Exception e) {
+        //                     // ignore
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage ('Update lock file') {
-            when {
-                allOf {
-                    expression {
-                        hasNewLock == '1'
-                    }
-                    expression {
-                        branch == 'master'
-                    }
-                }
-            }
-            steps {
-                script {
-                    sshagent(['jenkins-ssh-key']) {
-                        sh "git checkout ${branch}"
-                        sh "git add yarn.lock"
-                        sh "git commit -m 'chore: 🤖 update lock file'"
-                        sh "git push origin master"
-                    }
-                }
-            }
-        }
+        // stage ('Update lock file') {
+        //     when {
+        //         allOf {
+        //             expression {
+        //                 hasNewLock == '1'
+        //             }
+        //             expression {
+        //                 branch == 'master'
+        //             }
+        //         }
+        //     }
+        //     steps {
+        //         script {
+        //             sshagent(['jenkins-ssh-key']) {
+        //                 sh "git checkout ${branch}"
+        //                 sh "git add yarn.lock"
+        //                 sh "git commit -m 'chore: 🤖 update lock file'"
+        //                 sh "git push origin master"
+        //             }
+        //         }
+        //     }
+        // }
 
         stage ('Build packages') {
             steps {
                 script {
-                    sh "yarn workspaces run prepare"
+                    sh "docker build --force-rm --no-cache --target=build ."
                 }
             }
         }
 
-        stage ('Run unit tests') {
-            steps {
-                script {
-                    sh "yarn test --coverage --config ./jest.noThreshold.js"
-                }
-            }
+        // stage ('Run unit tests') {
+        //     steps {
+        //         script {
+        //             sh "yarn test --coverage --config ./jest.noThreshold.js"
+        //         }
+        //     }
 
-            post {
-                always {
-                    configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
-                        sh "mkdir ~/.aws"
-                        sh "mv aws-config ~/.aws/config"
-                        sh "aws s3 cp coverage s3://unittest/dashboardui/master/ --recursive --acl public-read"
-                    }
+        //     post {
+        //         always {
+        //             configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
+        //                 sh "mkdir ~/.aws"
+        //                 sh "mv aws-config ~/.aws/config"
+        //                 sh "aws s3 cp coverage s3://unittest/dashboardui/master/ --recursive --acl public-read"
+        //             }
 
-                    echo "https://unittest.s3.nl-ams.scw.cloud/dashboardui/master/index.html"
-                }
-            }
-        }
+        //             echo "https://unittest.s3.nl-ams.scw.cloud/dashboardui/master/index.html"
+        //         }
+        //     }
+        // }
 
-        stage ('Build storybook') {
-            steps {
-                script {
-                    sh "yarn build-storybook"
+        // stage ('Build storybook') {
+        //     steps {
+        //         script {
+        //             sh "yarn build-storybook"
 
-                    configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
-                        sh "mkdir -p ~/.aws"
-                        sh "mv aws-config ~/.aws/config"
-                        sh "aws s3 cp storybook-static s3://dashboardui/master/ --recursive --acl public-read"
-                    }
+        //             configFileProvider([configFile(fileId: 'scaleway-s3-config', targetLocation: 'aws-config')]) {
+        //                 sh "mkdir -p ~/.aws"
+        //                 sh "mv aws-config ~/.aws/config"
+        //                 sh "aws s3 cp storybook-static s3://dashboardui/master/ --recursive --acl public-read"
+        //             }
 
-                    echo "https://dashboardui.s3.nl-ams.scw.cloud/master/index.html"
-                }
-            }
-        }
+        //             echo "https://dashboardui.s3.nl-ams.scw.cloud/master/index.html"
+        //         }
+        //     }
+        // }
     }
 }
