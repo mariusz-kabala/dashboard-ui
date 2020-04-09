@@ -16,6 +16,8 @@ COPY --from=test /app/coverage /app/coverage
 
 COPY --from=test /app/aws-config ~/.aws/config
 
+RUN cat ~/.aws/config
+
 WORKDIR /app
 
 RUN aws s3 cp --recursive --acl public-read coverage s3://unittest/dashboardui/master/
