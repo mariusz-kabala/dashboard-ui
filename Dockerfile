@@ -1,4 +1,4 @@
-# install and run unit tests
+# install, run unit tests and build
 FROM node:12-alpine AS build
 
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN yarn workspaces run prepare
 
 RUN yarn build:storybook
 
-# upload unit tests results
+# upload unit tests results and story book
 FROM docker-registry.kabala.tech/aws-cli-scaleway:latest AS upload
 
 ARG AWS_ACCESS_KEY_ID
@@ -21,8 +21,6 @@ ARG AWS_SECRET_ACCESS_KEY
 
 COPY --from=build /app/coverage /app/coverage
 COPY --from=build /app/storybook-static /app/storybook-static
-
-RUN cat /root/.aws/config
 
 WORKDIR /app
 
