@@ -25,4 +25,4 @@ COPY --from=build /app/storybook-static /app/storybook-static
 WORKDIR /app
 
 RUN aws s3 cp --recursive --acl public-read coverage s3://unittest/dashboardui/master/
-RUN aws s3 cp --recursive --acl public-read storybook-static s3://unittest/dashboardui/master/
+RUN aws s3 cp --recursive --acl public-read storybook-static s3://dashboardui/master/
