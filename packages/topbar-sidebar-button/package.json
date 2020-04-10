@@ -1,6 +1,6 @@
 {
   "name": "@dashboard-ui/topbar-sidebar-button",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "source": "src/index.tsx",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "prepare": "yarn build && yarn build-declarations"
   },
   "devDependencies": {
-    "@dashboard-ui/icons": "*"
+    "@dashboard-ui/icons": "0.1.0"
   },
   "peerDependencies": {
     "react": "^16.12.0",

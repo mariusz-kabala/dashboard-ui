@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/mariusz-kabala/dashboard-ui/compare/@dashboard-ui/sidebar-link@0.1.2...@dashboard-ui/sidebar-link@0.2.0) (2020-04-10)
+
+### Features
+
+- add missing components and stories for base layout ([857906c](https://github.com/mariusz-kabala/dashboard-ui/commit/857906c590bfece85bbb6399ce8c1fe8a98472ed))
+
 ## [0.1.2](https://github.com/mariusz-kabala/dashboard-ui/compare/@dashboard-ui/sidebar-link@0.1.1...@dashboard-ui/sidebar-link@0.1.2) (2020-04-09)
 
 **Note:** Version bump only for package @dashboard-ui/sidebar-link

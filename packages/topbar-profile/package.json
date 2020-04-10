@@ -1,6 +1,6 @@
 {
   "name": "@dashboard-ui/topbar-profile",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "source": "src/index.tsx",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",
@@ -16,7 +16,7 @@
     "classnames": "^2.2.6"
   },
   "devDependencies": {
-    "@dashboard-ui/topbar-menu-link": "*"
+    "@dashboard-ui/topbar-menu-link": "0.2.0"
   },
   "peerDependencies": {
     "@dashboard-ui/styles": "^0.0.1",
