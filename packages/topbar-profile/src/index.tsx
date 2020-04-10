@@ -2,7 +2,7 @@ import React, { useState, FC, ReactNode } from 'react'
 import DownIcon from 'mdi-react/ChevronDownIcon'
 import { Collapse } from 'reactstrap'
 
-export const TopBarProfile: FC<{
+export const TopbarProfile: FC<{
   username: string
   avatar: string
   menu: ReactNode

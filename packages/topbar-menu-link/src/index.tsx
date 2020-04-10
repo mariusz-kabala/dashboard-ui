@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-export const TopBarMenuLink: FC<{
+export const TopbarMenuLink: FC<{
   title: string
   path: string
   icon: string

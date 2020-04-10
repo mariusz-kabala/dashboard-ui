@@ -1,24 +1,24 @@
 import React, { FC } from 'react'
 
-export const TopBarSidebarButton: FC<{
+export const TopbarSidebarButton: FC<{
   onChangeSidebarVisibility: () => void
   onChangeMobileSidebarVisibility: () => void
-  icon: string
-}> = ({ onChangeSidebarVisibility, onChangeMobileSidebarVisibility, icon }) => (
+  Icon: React.ReactNode
+}> = ({ onChangeSidebarVisibility, onChangeMobileSidebarVisibility, Icon }) => (
   <div>
     <button
       type="button"
       className="topbar__button topbar__button--desktop"
       onClick={onChangeSidebarVisibility}
     >
-      <img src={icon} alt="" className="topbar__button-icon" />
+      {Icon}
     </button>
     <button
       type="button"
       className="topbar__button topbar__button--mobile"
       onClick={onChangeMobileSidebarVisibility}
     >
-      <img src={icon} alt="" className="topbar__button-icon" />
+      {Icon}
     </button>
   </div>
 )

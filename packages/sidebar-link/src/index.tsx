@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Badge } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 
-export const SideBarLink: FC<{
+export const SidebarLink: FC<{
   title: string
   icon?: string
   newLink?: boolean

@@ -1,27 +1,27 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { action } from '@storybook/addon-actions'
-import { SideBarLink } from '@dashboard-ui/sidebar-link'
-import { SideBarCategory } from '../src'
+import { SidebarLink } from '@dashboard-ui/sidebar-link'
+import { SidebarCategory } from '../src'
 
 export default {
   title: '@dashboard-ui/sidebar-category',
-  component: SideBarCategory,
+  component: SidebarCategory,
 }
 
 export const Default = () => (
   <BrowserRouter>
-    <SideBarCategory title="Example Pages" icon="diamond">
-      <SideBarLink
+    <SidebarCategory title="Example Pages" icon="diamond">
+      <SidebarLink
         title="Page one"
         route="/pages/one"
         onClick={action('clicked')}
       />
-      <SideBarLink
+      <SidebarLink
         title="Page two"
         route="/pages/two"
         onClick={action('clicked')}
       />
-    </SideBarCategory>
+    </SidebarCategory>
   </BrowserRouter>
 )

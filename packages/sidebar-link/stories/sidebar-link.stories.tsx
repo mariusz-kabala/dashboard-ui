@@ -1,26 +1,26 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { SideBarLink } from '../src'
+import { SidebarLink } from '../src'
 
 export default {
   title: '@dashboard-ui/sidebar-link',
-  component: SideBarLink,
+  component: SidebarLink,
 }
 
 export const Default = () => (
   <BrowserRouter>
-    <SideBarLink title="Example link" />
+    <SidebarLink title="Example link" />
   </BrowserRouter>
 )
 
 export const WithIcon = () => (
   <BrowserRouter>
-    <SideBarLink title="Log Out" icon="exit" route="/log_in" />
+    <SidebarLink title="Log Out" icon="exit" route="/log_in" />
   </BrowserRouter>
 )
 
 export const NewLink = () => (
   <BrowserRouter>
-    <SideBarLink newLink={true} title="New stuff" icon="exit" route="/new" />
+    <SidebarLink newLink={true} title="New stuff" icon="exit" route="/new" />
   </BrowserRouter>
 )

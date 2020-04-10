@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useState } from 'react'
 import { Collapse } from 'reactstrap'
 import classNames from 'classnames'
 
-export const SideBarCategory: FC<{
+export const SidebarCategory: FC<{
   title: string
   icon?: string
   isNew?: boolean

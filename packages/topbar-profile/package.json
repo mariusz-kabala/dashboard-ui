@@ -15,8 +15,11 @@
   "dependencies": {
     "classnames": "^2.2.6"
   },
+  "devDependencies": {
+    "@dashboard-ui/topbar-menu-link": "*"
+  },
   "peerDependencies": {
-    "@dashboard-ui/styles": "0.0.1",
+    "@dashboard-ui/styles": "^0.0.1",
     "bootstrap": "^4.4.1",
     "mdi-react": "^6.7.0",
     "react": "^16.12.0",

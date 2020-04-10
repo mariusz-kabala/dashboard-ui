@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import Scrollbar from 'react-smooth-scrollbar'
 import classNames from 'classnames'
 
-export const SideBar: FC<{
+export const Sidebar: FC<{
   onChangeMobileSidebarVisibility: () => void
   isSidebarVisible: boolean
   isSidebarCollapse: boolean
